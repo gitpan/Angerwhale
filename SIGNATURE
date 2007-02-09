@@ -14,12 +14,12 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 b86ccfc24156e0dd53ff01fbca738ad18c2b88f0 Build.PL
+SHA1 f6feb05492430ed85d5724ee8f117ebddbca853a Build.PL
 SHA1 6497f483d283408a55496c1817f85a56898eb15d Changes
 SHA1 b11339c3e4c58117246a15d3ea3550e03d16d6d5 MANIFEST
 SHA1 060d6b57d243eb5a15e0b26f905e8980ae776c6b MANIFEST.SKIP
-SHA1 3b4d6707aceee872c6e36842c74fd6f460574a31 META.yml
-SHA1 b86ccfc24156e0dd53ff01fbca738ad18c2b88f0 Makefile.PL
+SHA1 e1f77423c1622a6ab900366c563179ad8425056a META.yml
+SHA1 f6feb05492430ed85d5724ee8f117ebddbca853a Makefile.PL
 SHA1 20d48ee5d6181a46ee28c1c641012d8d8621122c README
 SHA1 51889471e072a9ff254dfb33992d79dad6ba05f3 angerwhale.yml
 SHA1 5b52cbdabc56a44e4c0a90a3f5a5609a90d26f84 inc/ExtUtils/AutoInstall.pm
@@ -37,7 +37,7 @@ SHA1 381bb98ea3877bba49ae85e7a7ea130645fd3dbf inc/Module/Install/Metadata.pm
 SHA1 b384bd42bc6263dc56d04a884ef4e5fe340049f8 inc/Module/Install/Scripts.pm
 SHA1 0c2118868ef82ac517eb6d9c3bd93e6eb9bbf83e inc/Module/Install/Win32.pm
 SHA1 e827d6d43771032fa3df35c0ad5e5698d0e54cda inc/Module/Install/WriteAll.pm
-SHA1 a872de6e0385d23243fc54db04288c4933e46633 lib/Angerwhale.pm
+SHA1 645092c7f297286eb68f8427bb98ca9893db1ab2 lib/Angerwhale.pm
 SHA1 6ed973c686cc243c5e1446a67214cc300a629783 lib/Angerwhale/Challenge.pm
 SHA1 a61866103b94bb5850fc5dc9a5441086c4c193f6 lib/Angerwhale/Controller/Articles.pm
 SHA1 747cf690f3efe365c84101d2ce14c4a9ece23bfd lib/Angerwhale/Controller/Categories.pm
@@ -59,7 +59,7 @@ SHA1 91a1a8c30dcaa7231db8e854bc12efbc7bf857fa lib/Angerwhale/Model/Filesystem/Ar
 SHA1 eca265dd93aa0ce80aeb54d68c66d9ab9533cb82 lib/Angerwhale/Model/Filesystem/Comment.pm
 SHA1 855a7080398f786900d2dc70491589cd0ccb3179 lib/Angerwhale/Model/Filesystem/Item.pm
 SHA1 cfe3b74eb26942b1159c829b8413e15793aa28cf lib/Angerwhale/Model/Filesystem/Item/Components/Comments.pm
-SHA1 8f96ce34de1a2561a373655c0a926923905a520a lib/Angerwhale/Model/Filesystem/Item/Components/Content.pm
+SHA1 4d8fb00d1a7e9cc10ecba1b07840a82514a2c03f lib/Angerwhale/Model/Filesystem/Item/Components/Content.pm
 SHA1 d1120b18bc05fb583d3ea6f839d3a0fa1c4ac444 lib/Angerwhale/Model/Filesystem/Item/Components/Encoding.pm
 SHA1 568164281bd432135f420beb5ebc6f20a2cdbabb lib/Angerwhale/Model/Filesystem/Item/Components/GUID.pm
 SHA1 5f7ed3c61422e0698d2e9f7208179a474d21f604 lib/Angerwhale/Model/Filesystem/Item/Components/Metadata.pm
@@ -93,7 +93,7 @@ SHA1 216f2523e9dff53ae586d5885eca73ad5ca53643 root/navbox.tt
 SHA1 750f4bc086c601229130ff189f7d6e2057085440 root/page.tt
 SHA1 e5989f8d685910eed4a47bb5150b667c06becab6 root/post.tt
 SHA1 5b6c090ab4298aa1798b4aaab8663fe151db3edd root/post_comment.tt
-SHA1 5c2b9a2675b89f73c9969010421f59c50ce48ff8 root/revision.tt
+SHA1 6a285d0ea7abb5bf753b18600825b41052f412e3 root/revision.tt
 SHA1 81f14e0544c24611aa364bf1affad7034215ee4c root/search_results.tt
 SHA1 c242e4b71a6ebeceb3da8b315e90d1e52ba2922d root/sidebar.tt
 SHA1 3e2bf96ffbf4002572dfe3c177bdbd6ec8ba1ce0 root/sidebar_feed.tt
@@ -202,9 +202,9 @@ SHA1 aebbc5ec59e948fe9b7359eb92cb128f7c2ae4d5 t/views/view_YAML.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.6 (GNU/Linux)
 
-iQCVAwUBRcuYo9AZeFPdJeQvAQIgRwP/T+M/Ygud8GHBAmbd+6xLoJw8YOMKoWwM
-IGO47EcxqVusj7UNr3nlKWNHstq53CEL59XNWzPyUFcqT3oTbMlCCWuPEwNxyLbJ
-yQ/dOXUvpIL/y4RG6x3/BkJZfZsfTfeTz8QvMN/mfTueBZtjZlnJX26iwM7nvo+p
-UHsf8vsNSe0=
-=rnFj
+iQCVAwUBRcw2VdAZeFPdJeQvAQIklQP9FuR7j+sz4WZq1EPz6gsd00x0uuKUuw/d
+CXMKu96c2YcWKVZXuE7I1SRwHjoOuRFBSw+LE11AvXu6azSDmv6Jr+d5KbRnAFSF
+A13XMKikQYvPW8lxU5QyZweTFve3qP1e9p2IB2KIESJF++uFvfWsxLJXyEa/Gx7f
+QCBMv1I0KWM=
+=J5nv
 -----END PGP SIGNATURE-----

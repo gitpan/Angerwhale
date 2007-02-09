@@ -78,4 +78,4 @@ requires:
   base: 0
   version: 0
 tests: t/*/*.t
-version: 0.01_02
+version: 0.02
