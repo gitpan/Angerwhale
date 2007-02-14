@@ -1,16 +1,18 @@
 #!/usr/bin/perl
-# PreviewComment.pm 
+# PreviewComment.pm
 # Copyright (c) 2006 Jonathan Rockway <jrockway@cpan.org>
 
-package Angerwhale::Model::Filesystem::PreviewComment;
+package Angerwhale::ContentItem::PreviewComment;
 use strict;
 use warnings;
-use base qw(Angerwhale::Model::Filesystem::Comment Class::Accessor);
+use base qw(Angerwhale::ContentItem::Comment Class::Accessor);
 use Angerwhale::User::Anonymous;
 use Carp;
 
-__PACKAGE__->mk_accessors(qw|title preview_body type
-			     cache userstore context|);
+__PACKAGE__->mk_accessors(
+    qw|title preview_body type
+      cache userstore context|
+);
 
 =head1 PreviewComment
 
@@ -30,17 +32,17 @@ C<< $c->model('UserStore') >> so we can look up PGP info.
 =cut
 
 sub new {
-    my $class	 = shift;
-    my $self     = shift;
-    bless $self, $class;    
-    
-    $self->preview_body($self->{body});
-    $self->cache($self->context->cache);
-    $self->userstore($self->context->model('UserStore'));
+    my $class = shift;
+    my $self  = shift;
+    bless $self, $class;
+
+    $self->{type} ||= 'text';
+    $self->preview_body( $self->{body} );
+    $self->cache( $self->context->cache );
+    $self->userstore( $self->context->model('UserStore') );
     
     return $self;
 }
-
 
 sub creation_time {
     return time();
@@ -51,9 +53,9 @@ sub modification_time {
 }
 
 sub raw_text {
-    my $self = shift;
+    my $self     = shift;
     my $want_pgp = shift;
-    return $self->SUPER::raw_text($want_pgp, $self->preview_body);
+    return $self->SUPER::raw_text( $want_pgp, $self->preview_body );
 }
 
 sub uri {
@@ -64,6 +66,7 @@ sub uri {
 # a few hacks here to prevent setting attributes on this fake comment
 
 sub _fix_author {
+
     # no-op
 }
 
@@ -72,23 +75,23 @@ sub _cached_signature {
 }
 
 sub _cache_signature {
+
     # i'll get right on that...
-    return; 
+    return;
 }
 
 sub author {
     my $self = shift;
     my $user = $self->context->stash->{user};
-    if (defined $user && $user->can('nice_id')){
-	return $user;
+    if ( defined $user && $user->can('nice_id') ) {
+        return $user;
     }
-    elsif ($self->signed){
-	my $id = $self->signor;
-	return $self->context->model('UserStore')->
-	  get_user_by_real_id($id);
+    elsif ( $self->signed ) {
+        my $id = $self->signor;
+        return $self->context->model('UserStore')->get_user_by_real_id($id);
     }
     else {
-	return Angerwhale::User::Anonymous->new;
+        return Angerwhale::User::Anonymous->new;
     }
 }
 
@@ -97,14 +100,14 @@ sub id {
 }
 
 # here so that SUPER doesn't get called
-sub comments {}
-sub comment_count {}
-sub add_comment {}
-sub post_uri {}
-sub set_tag {}
-sub tags {}
-sub tag_count {0;}
-sub name {}
+sub comments      { }
+sub comment_count { }
+sub add_comment   { }
+sub post_uri      { }
+sub set_tag       { }
+sub tags          { }
+sub tag_count     { 0; }
+sub name          { }
 1;
 
 __END__

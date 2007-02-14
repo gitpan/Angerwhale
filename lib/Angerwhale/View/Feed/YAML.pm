@@ -4,16 +4,15 @@ use strict;
 use warnings;
 use base qw(Angerwhale::View::Feed Catalyst::View);
 use YAML::Syck;
-use Scalar::Util qw(blessed);
 
 # TODO: not *quite* what we want
 sub process {
-    my ($self, $c) = @_;
+    my ( $self, $c ) = @_;
     my @items = $self->prepare_items($c);
-    
+
     # all went well, so we're done
     $c->response->content_type('text/x-yaml; charset=utf-8');
-    $c->response->body(Dump(@items)); 
+    $c->response->body( Dump(@items) );
 }
 
 1;

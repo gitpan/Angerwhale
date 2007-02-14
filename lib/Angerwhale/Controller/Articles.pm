@@ -21,23 +21,23 @@ Catalyst Controller.
 
 =head1 METHODS
 
-=head2 article_list
+=head2 index
 
-Stashes all articles in reverse order.
+Shows every article.
 
 =cut
 
-sub article_list : Private {
-    my ($self, $c) = @_;
+sub index : Private {
+    my ( $self, $c ) = @_;
     
-    $c->stash->{page}	   = 'article_list';
-    $c->stash->{template}  = 'search_results.tt';
-    $c->stash->{title}	   = 'Archives - '. $c->config->{title};
-    
+    $c->stash->{page}     = 'article_list';
+    $c->stash->{template} = 'search_results.tt';
+    $c->stash->{title}    = 'Archives - ' . $c->config->{title};
+
     my @articles = reverse sort $c->model('Filesystem')->get_articles();
-    
-    $c->stash->{articles}	= [@articles];
-    $c->stash->{article_count}	= scalar @articles;
+
+    $c->stash->{articles}      = [@articles];
+    $c->stash->{article_count} = scalar @articles;
 }
 
 =head2 single_article(['raw'])
@@ -48,58 +48,34 @@ stream.
 
 =cut
 
-sub single_article : Private  {
-    my ($self, $c, @args) = @_;
-    my $name    = shift @args;
-    my $type    = shift @args;
-    
-    if(!$name){
-	$c->detach('article_list');
+sub single_article : Path {
+    my ( $self, $c, @args ) = @_;
+    my $name = shift @args;
+    my $type = shift @args;
+
+    if ( !$name ) {
+        $c->detach('article_list');
     }
-    
+
     $c->stash->{template} = 'article.tt';
-    eval {
-	$c->stash->{article} = $c->model('Filesystem')->get_article($name);
-    };
-    if($@){
-	# not found!
-	$c->stash->{template} = 'error.tt';
-	$c->response->status(404);
-	return;
+    eval { $c->stash->{article} = $c->model('Filesystem')->get_article($name); };
+    if ($@) {
+
+        # not found!
+        $c->stash->{template} = 'error.tt';
+        $c->response->status(404);
+        return;
     }
     $c->stash->{title} = $c->stash->{article}->title;
-    
+
     # if the user wants the raw message (to verify the signature),
     # return that instead of rendering the template
-    if(defined $type && $type eq 'raw'){
-	$c->response->content_type('application/octet-stream');
-	$c->response->body($c->stash->{article}->raw_text(1));
-	return;
+    if ( defined $type && $type eq 'raw' ) {
+        $c->response->content_type('application/octet-stream');
+        $c->response->body( $c->stash->{article}->raw_text(1) );
+        return;
     }
 }
-
-=head2 default 
-
-XXX: Fix me
-
-Shows all articles at C</articles/> or shows a single
-article at C</articles/Article name.format(/raw)?>.
-
-=cut
-
-sub default : Private {
-    my ($self, $c, @args) = @_;
-    my $page = shift @args;
-    die unless $page eq 'articles'; # assert.
-    
-    if(@args){
-	$c->detach('single_article', [@args]);
-    }
-    
-    $c->detach('article_list');
-}
-
-
 
 =head1 AUTHOR
 
