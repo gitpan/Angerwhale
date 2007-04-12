@@ -7,3 +7,7 @@
 ^_build/
 ^cover_db$
 ^MANIFEST.bak$
+#[.]pm$
+.git/
+^Angerwhale*.tar.gz$
+^Angerwhale-*/

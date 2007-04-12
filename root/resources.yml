@@ -1,0 +1,55 @@
+---
+# no user servicable parts inside!
+name: Angerwhale
+encoding: utf-8
+Model::Articles:
+   storage_class: Filesystem
+   storage_args:
+      root: __path_to(root/posts)__
+session:
+   flash_to_stash: 1
+cache:
+   expires: 43200
+   backends:
+      jemplate:
+         store: FastMmap
+      pages:
+         store: FastMmap
+      formatted:
+         store: FastMmap
+View::Jemplate:
+   jemplate_dir: __path_to(root/jemplate)__
+page_includes:
+# javascript is in base/static/javascript
+   javascript:
+      - prototype.js
+      - builder.js
+      - controls.js
+      - dragdrop.js
+      - effects.js
+      - slider.js
+      - Jemplate.js
+# jemplates are in base/jemplate/*
+   jemplates:
+      - logged_in_as.tt
+      - sidebar_feed.tt
+theme: phokus
+themes:
+   phokus:
+      css:
+         - phokus/phokus.css
+         - common/syntax-dark.css
+   legacy:
+      css:
+         - legacy/style.css
+         - common/syntax-dark.css
+filters:
+   - Encoding 
+   - Checksum 
+   - Title
+   - Author
+   - PGP 
+   - Format
+   - Summary 
+   - URI 
+   - Finalize

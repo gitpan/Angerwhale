@@ -10,15 +10,18 @@ use Scalar::Util qw(blessed);
 
 =head1 NAME
 
-Angerwhale::Controller::Categories - Catalyst Controller
+Angerwhale::Controller::Categories - Generate a blog listing of recent
+articles in a given category, optionally filtered by date
 
-=head1 SYNOPSIS
+=head1 LOCATIONS
 
-See L<Angerwhale>
+=head2 /
 
-=head1 DESCRIPTION
+Main page is category C</>.
 
-Catalyst Controller.
+=head2 /categories/$ARG
+
+Renders articles in category C<$ARG>.
 
 =head1 METHODS
 
@@ -79,21 +82,21 @@ sub show_category : Path('/categories') {
       || 5;
 
     # how many words must an article contain to be non-mini?
-    my $MINI_CUTOFF = $c->config->{mini_cutoff} || 120;
-
+    my $MINI_CUTOFF = $c->config->{mini_cutoff} || 60;
+    
     # get the articles
     my $article;    # tmp counter variable in a few places
     my @articles;
 
     if ( $category eq '/' ) {    # redirected from Root.pm
-        @articles = reverse sort $c->model('Filesystem')->get_articles();
+        @articles = reverse sort $c->model('Articles')->get_articles();
     }
     else {
         $c->stash->{title} = "Entries in $category";
         
         eval {
             @articles =
-              reverse sort $c->model('Filesystem')->get_by_category($category);
+              reverse sort $c->model('Articles')->get_by_category($category);
         };
 
         if ($@) {

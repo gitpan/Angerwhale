@@ -3,8 +3,10 @@ author: Jonathan Rockway <jrockway@cpan.org>
 build_requires: 
   Directory::Scratch: 0.12
   HTML::Tidy: 0
+  Path::Class: 0
   Test::Exception: 0
   Test::HTML::Tidy: 0
+  Test::JSON: 0
   Test::More: 0
   Test::NoTabs: 0
   Test::Strict: 0
@@ -23,6 +25,7 @@ no_index:
 requires: 
   Algorithm::IncludeExclude: 0.01
   Catalyst: 5.7
+  Catalyst::Component::ACCEPT_CONTEXT: 0.02
   Catalyst::Model::XML::Feed: 0.01
   Catalyst::Plugin::Cache: 0.02
   Catalyst::Plugin::Cache::Store::FastMmap: 0.01
@@ -38,6 +41,7 @@ requires:
   Catalyst::View::JSON: 0
   Catalyst::View::Jemplate: 0
   Class::C3: 0
+  Compress::Zlib: 0
   Crypt::Blowfish: 0
   Crypt::CAST5_PP: 0
   Crypt::DES_EDE3: 0
@@ -54,21 +58,25 @@ requires:
   File::Attributes::Recursive: 0
   File::CreationTime: 2.03
   File::Find: 0
+  File::Path: 0
   File::Remove: 0
   File::Slurp: 9999.12
+  File::Spec: 0
   File::Temp: 0
   GD::SecurityImage: 0
   HTML::SBC: 0
   HTML::TreeBuilder: 0
   HTTP::Date: 0
   IO::String: 0
+  JSON: 0
   Module::Pluggable: 0
   NEXT: 0.60
   Pod::Simple::Text: 0
-  Pod::Xhtml: 0
+  Pod::Xhtml: 1.52_01
   Quantum::Superpositions: 0
+  Scalar::Defer: 0
   Scalar::Util: 0
-  Syntax::Highlight::Engine::Kate: 0
+  Syntax::Highlight::Engine::Kate: 0.02
   TeX::Hyphen: 0
   Template::Plugin::Filter: 0
   Template::Plugin::Lingua::EN::Inflect: 0
@@ -79,6 +87,7 @@ requires:
   Time::Duration: 0
   URI: 0
   URI::Escape: 3.28
+  URI::Find: 0
   XML::Atom::SimpleFeed: 0.8
   XML::Feed: 0.11
   YAML: 0.60
@@ -86,4 +95,4 @@ requires:
   base: 0
   version: 0
 tests: t/*/*.t
-version: 0.03
+version: 0.04

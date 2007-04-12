@@ -4,49 +4,43 @@ use strict;
 use warnings;
 use File::Spec;
 use File::Remove;
+use YAML::Syck qw(LoadFile);
 use Catalyst qw/Unicode ConfigLoader Static::Simple
-  Cache Cache::Store::FastMmap Setenv
-  Session::Store::FastMmap Session::State::Cookie Session
-  ConfigLoader::Environment/;
+                Cache Cache::Store::FastMmap Setenv
+                Session::Store::FastMmap Session::State::Cookie Session
+                ConfigLoader::Environment +Angerwhale::Plugin::Cache/;
 
 #XXX: add C3 and LogWarnings back
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 my $tmp = File::Spec->catdir(File::Spec->tmpdir, 'angerwhale');
 File::Remove::remove(\1, $tmp);
-
 binmode STDOUT, ':utf8';
-__PACKAGE__->config->{session} = 
-  { 
-   flash_to_stash => 1,
-  };
 
-__PACKAGE__->config( { name => __PACKAGE__ } );
-__PACKAGE__->config->{static}->{mime_types} = {
-    svg => 'image/svg+xml',
-    js  => 'text/javascript',
-}; 
+# load defaults
+__PACKAGE__->config(LoadFile(__PACKAGE__->path_to('root', 'resources.yml')));
 
-__PACKAGE__->config(cache => {
-                              backends => {
-                                           jemplate => {
-                                                        store => "FastMmap",
-                                                       }
-                                          }
-                             }
+__PACKAGE__->config('revision_callback' => 
+                    sub { 
+                        my $c   = shift;
+                        my $uri = shift;
+                        
+                        return 1 if $uri->path =~ m{/jemplate/}; # never expires
+                        return $c->model('Articles')->revision;
+                    }
                    );
 
-__PACKAGE__->config('View::Jemplate'=> {
-                                        jemplate_dir => 
-                                            __PACKAGE__->path_to('root','jemplate'),
-                                        jemplate_ext => '.tt',
-                                       },
-                   );
-
-__PACKAGE__->config->{cache}->{expires} = 43200;    # 12 hours
 __PACKAGE__->config( { VERSION => $VERSION } );
 __PACKAGE__->setup;
+
+# setup theme; CSS only for now
+my $theme = __PACKAGE__->config->{theme} || 'phokus';
+my $css =   __PACKAGE__->config->{themes}{$theme}{css};
+die "Your theme is screwed up" if !ref $css;
+__PACKAGE__->config->{page_includes}{css} = $css;
+
+# kill debugging message
 __PACKAGE__->log->disable('debug') if !__PACKAGE__->debug;
 
 1;
@@ -132,7 +126,7 @@ L<irc://irc.perl.org/#catalyst>.
 
 =item *
 
-Wiki and source code browser is at L<http://trac.jrock.us/blog_software>.
+Git (revision control) at L<http://git.angerwhale.org>.
 
 =item *
 
@@ -145,8 +139,9 @@ course, it's running Angerwhale.)
 
 =head1 TODO
 
-Lots of things TODO.  Patches welcome; but ask on IRC before you get
-started.  I'll give you a commit bit so you can work at your leisure.
+Lots of things TODO.  Patches welcome; but it's best to ask on IRC
+before you get started.  I'll give you a commit bit so you can work at
+your leisure.
 
 =over 4
 
@@ -206,7 +201,7 @@ Bogdan Lucaciu - L<http://blog.wiz.ro/>
 
 =item *
 
-Florian Ragwitz L<http://perldition.org/>
+Florian Ragwitz - L<http://perldition.org/>
 
 =back
 

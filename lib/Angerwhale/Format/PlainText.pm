@@ -1,4 +1,3 @@
-#!/usr/bin/perl
 # PlainText.pm
 # Copyright (c) 2006 Jonathan Rockway <jrockway@cpan.org>
 
@@ -6,6 +5,7 @@ package Angerwhale::Format::PlainText;
 use strict;
 use warnings;
 use Text::Autoformat qw(autoformat break_TeX);
+use URI::Find;
 
 =head1 Angerwhale::Format::PlainText
 
@@ -27,6 +27,9 @@ Can format *.txt and *.text.
 Handles 'text' which is plain text
 
 =head2 format
+
+Returns the text as HTML, making line breaks into paragraphs and links
+clickable.
 
 =head2 format_text
 
@@ -68,6 +71,15 @@ sub format {
     $text =~ s/'/&apos;/g;
     $text =~ s/"/&quot;/g;
 
+    # find URIs
+    my $finder = URI::Find->new(
+                                sub {
+                                    my($uri, $orig_uri) = @_;
+                                    return qq|<a href="$uri">$orig_uri</a>|;
+                                });
+    $finder->find(\$text);
+    
+    # fix paragraphs
     my @paragraphs = split /\n+/m, $text;
     @paragraphs = grep { $_ !~ /^\s*$/ } @paragraphs;
     return join( ' ', map { "<p>$_</p>" } @paragraphs );

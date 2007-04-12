@@ -1,4 +1,3 @@
-#!/usr/bin/perl
 # Test.pm 
 # Copyright (c) 2007 Jonathan Rockway <jrockway@cpan.org>
 
@@ -50,7 +49,7 @@ sub import {
     my $class = shift;
     my %config = @_;
     
-    $tmp = Directory::Scratch->new;
+    $tmp = Directory::Scratch->new(TEMPLATE => 'angerXXXXXXXXXX');
     $ENV{"ANGERWHALE_base"} = $tmp->base;
     $ENV{"ANGERWHALE_html"} = 1;
     foreach my $key (keys %config){
@@ -75,11 +74,16 @@ sub tmp {
 
 Post a new article.  Args are title, body, type ...
 
+Optionally you can pass a string instead of args, in which case the
+string will be the title and the body.
+
 =cut
 
 sub article {
     my $self = shift;
     my $args = shift;
+    $args = {title => $args, body => $args} unless ref $args;
+    
     my $file = $args->{title};
     $file =~ s/\//_/g;
     $self->tmp->touch($file, $args->{body});

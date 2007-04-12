@@ -1,4 +1,3 @@
-#!/usr/bin/perl
 # Format.pm
 # Copyright (c) 2006 Jonathan Rockway <jrockway@cpan.org>
 
@@ -6,6 +5,7 @@ package Angerwhale::Format;
 use strict;
 use warnings;
 use Carp;
+#use base 'Catalyst::Component';
 use Module::Pluggable (
     search_path => ['Angerwhale::Format'],
     instantiate => 'new',
@@ -29,10 +29,6 @@ sub _format {
     my $choice = $choices[0]->[0];
 
     return $choice->$what( $text, $type );
-}
-
-sub format {
-    return format_html(@_);
 }
 
 sub format_html {
@@ -75,23 +71,17 @@ This method will be called with the "type" to format.  Return 0 if you
 can't handle it, or a higher number based on how well you can format
 the "type".  1 is the lowest, 100 is the highest.
 
-=head2 format(text, type)
+=head2 format_html(text, type)
 
 This method will be called if your module returned the highest value
 for C<can_format>.  It is passed the text to format, and the type.  It
 should return the text formatted as HTML.
-
-Alternatively, you may return an L<Angerwhale::VirtualComment>.
 
 =head2 format_text(text, type)
 
 Like C<format>, but return plain text instead of HTML.  If format_html
 or format returns a VirtualComment, this method should return the same
 one.
-
-=head2 format_html
-
-Alias.
 
 =head2 types
 

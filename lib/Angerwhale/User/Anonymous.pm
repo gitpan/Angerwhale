@@ -1,7 +1,5 @@
-#!/usr/bin/perl
 # Anonymous.pm - [description]
 # Copyright (c) 2006 Jonathan T. Rockway
-# $Id: $
 
 package Angerwhale::User::Anonymous;
 use strict;

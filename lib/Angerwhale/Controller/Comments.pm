@@ -3,12 +3,11 @@ package Angerwhale::Controller::Comments;
 use strict;
 use warnings;
 use base 'Catalyst::Controller';
-use Angerwhale::ContentItem::PreviewComment;
 use Angerwhale::Format;
 use Scalar::Util qw(blessed);
 #use SpamMonkey;
 
-__PACKAGE__->mk_ro_accessors(qw/monkey/);
+#__PACKAGE__->mk_ro_accessors(qw/monkey/);
 
 =head1 NAME
 
@@ -73,8 +72,8 @@ sub find_by_path : Private {
     my ( $self, $c, @path ) = @_;
     return unless @path;
 
-    my @articles = $c->model('Filesystem')->get_articles;
-    my $article = ( grep { $_->id eq $path[0]; } @articles )[0];
+    my @articles = $c->model('Articles')->get_articles;
+    my $article = ( grep { $_->id eq $path[0] } @articles )[0];
     $c->stash->{article} = $article;
     shift @path;
 
@@ -82,7 +81,7 @@ sub find_by_path : Private {
         my @comments = $article->comments;
         $article = ( grep { $_->id eq $path } @comments )[0];
     }
-
+    
     $c->stash->{comment} = $article;
     return $article;
 }
@@ -98,18 +97,18 @@ sub comment : Path {
     $c->forward('find_by_uri_path');
 
     if (!defined $c->stash->{comment} || !blessed $c->stash->{comment}
-        || !$c->stash->{comment}->isa('Angerwhale::ContentItem') )
+        || !$c->stash->{comment}->isa('Angerwhale::Content::Item') )
       {
           $c->stash->{template} = "error.tt";
           $c->response->status(404);
       }
     else {
-
+        
         # handle cases where the find_by_uri_path item is the actual article
-        if (!$c->stash->{comment}->isa('Angerwhale::ContentItem::Comment')){
+        if (!$c->stash->{comment}->isa('Angerwhale::Content::Comment')){
             # handle getting articles by their GUID (instead of name)
-            $c->response->redirect(
-                 $c->uri_for( '/', $c->stash->{article}->uri ) );
+            $c->response->
+              redirect( $c->uri_for( '/', $c->stash->{article}->uri ) );
         }
         elsif ( $c->request->uri->as_string =~ m{/raw$} ) {
             $c->response->content_type('application/octet-stream');
@@ -144,6 +143,7 @@ sub post : Local {
     $c->forward( 'find_by_path', [@path] );
     my $article = $c->stash->{article};
     my $comment = $c->stash->{comment};
+    
     my $object  = $comment;
     $object = $article if !defined $comment;
 
@@ -161,16 +161,15 @@ sub post : Local {
         my $uid  = $user->nice_id if ( $user && $user->can('nice_id') );
 
 
-        my $comment = Angerwhale::ContentItem::PreviewComment->
-          new({
-               context => $c,
-               title   => $title,
-               body    => $body,
-               type    => $type
-              }
-             );
-
-
+        my $comment = $c->model('Articles')->
+          preview(
+                  {
+                   title   => $title,
+                   body    => $body,
+                   type    => $type
+                  }
+                 );
+        
         my $errors = 0;
         # spam filter
        # my $text = $comment->plain_text();

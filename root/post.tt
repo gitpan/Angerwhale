@@ -1,5 +1,4 @@
 [% USE infl = Lingua.EN.Inflect %]
-[% USE Time %]
 <div class="post">
   <div class="post_title">
     <h2> [% article.title | html %]</h2>
@@ -14,7 +13,7 @@
 	[% IF article.signed %]
 	    <a href="[% c.uri_for("/articles/$article.name") %]/raw">
 	      <img style="border: none;"
-	      	   src="[% base %]static/lock.png" alt="[SIGNED]" />
+	      	   src="[% base %]static/common/images/lock.png" alt="[SIGNED]" />
 	    </a>	
      	[% END %]
      </p>    

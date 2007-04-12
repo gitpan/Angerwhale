@@ -3,6 +3,7 @@ use NEXT;
 use strict;
 use base 'Catalyst::View::TT';
 use File::Spec;
+use Angerwhale::Filter::Time;
 
 __PACKAGE__->config(
     TOLERANT            => 1,
@@ -12,12 +13,31 @@ __PACKAGE__->config(
     DEBUG               => 1,
     COMPILE_DIR         => File::Spec->catfile(File::Spec->tmpdir, 
                                                'angerwhale', 'templates'),
-    PLUGIN_BASE         => 'Angerwhale::Filter',
 );
+
+sub process {
+    my $self = shift;
+    my $app = shift;
+    
+    my $context = $self->{template}->context;
+    my $time = sub {
+        my $c = $app;
+        my ($context, @args) = @_;
+        
+        return sub {
+            my $time = shift;
+            return Angerwhale::Filter::Time->filter($time, \@args, 
+                                                    $c->config->{date_format});
+        };
+    };
+    $context->define_filter('time' => $time, 1);
+    
+    return $self->NEXT::process($app, @_);
+}
 
 =head1 NAME
 
-Angerwhale::View::HTML - Catalyst TT View
+Angerwhale::View::HTML - Format stash into XHTML page via TT template
 
 =head1 SYNOPSIS
 
@@ -26,6 +46,12 @@ See L<Angerwhale>
 =head1 DESCRIPTION
 
 Catalyst TT View.
+
+=head1 METHODS
+
+=head2 process
+
+Install filters, then process the template.
 
 =head1 AUTHOR
 
