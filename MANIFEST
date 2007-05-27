@@ -60,6 +60,7 @@ lib/Angerwhale/Plugin/Cache.pm
 lib/Angerwhale/Signature.pm
 lib/Angerwhale/Test.pm
 lib/Angerwhale/Test/Application.pm
+lib/Angerwhale/Test/Tidy.pm
 lib/Angerwhale/User.pm
 lib/Angerwhale/User/Anonymous.pm
 lib/Angerwhale/View/Dump.pm
@@ -96,6 +97,12 @@ root/navbox.tt
 root/page.tt
 root/post.tt
 root/post_comment.tt
+root/posts/.gitignore
+root/posts/.users/d0197853dd25e42f/email
+root/posts/.users/d0197853dd25e42f/fingerprint
+root/posts/.users/d0197853dd25e42f/fullname
+root/posts/.users/d0197853dd25e42f/key
+root/posts/.users/d0197853dd25e42f/last_updated
 root/posts/Welcome
 root/resources.yml
 root/search_results.tt
@@ -127,15 +134,9 @@ root/static/common/images/svg_source/valid-xhtml11-blue-v.svg
 root/static/common/images/svg_source/XML.svg
 root/static/common/images/svg_source/YAML.svg
 root/static/common/syntax-dark.css
-root/static/javascript/builder.js
-root/static/javascript/controls.js
-root/static/javascript/dragdrop.js
-root/static/javascript/effects.js
+root/static/javascript/Angerwhale.js
 root/static/javascript/Jemplate.js
-root/static/javascript/prototype.js
-root/static/javascript/scriptaculous.js
-root/static/javascript/slider.js
-root/static/javascript/unittest.js
+root/static/javascript/MochiKit.js
 root/static/legacy/images/badge_yapcna2006.gif
 root/static/legacy/images/bg.jpg
 root/static/legacy/images/jon.jpg
@@ -196,7 +197,7 @@ t/application/invalid_not_found.t
 t/application/jemplate.t
 t/application/login.t
 t/application/tag_cloud.t
-t/application/tidy_config
+t/components/article-categories.t
 t/components/blog_user.t
 t/components/category_browsing.t
 t/components/challenge.t
@@ -206,6 +207,7 @@ t/components/formatters.t
 t/components/html-format.t
 t/components/markdown-format.t
 t/components/plaintext-format.t
+t/components/pod-strip-spaces.t
 t/components/preview_comment.t
 t/components/sbc-format.t
 t/components/signature.t

@@ -2,7 +2,7 @@ abstract: exciting new weblogging software or something
 author: Jonathan Rockway <jrockway@cpan.org>
 build_requires: 
   Directory::Scratch: 0.12
-  HTML::Tidy: 0
+  HTML::Tidy: 1.08
   Path::Class: 0
   Test::Exception: 0
   Test::HTML::Tidy: 0
@@ -40,6 +40,7 @@ requires:
   Catalyst::Plugin::Unicode: 0.2
   Catalyst::View::JSON: 0
   Catalyst::View::Jemplate: 0
+  Catalyst::View::TT: 0
   Class::C3: 0
   Compress::Zlib: 0
   Crypt::Blowfish: 0
@@ -71,6 +72,7 @@ requires:
   JSON: 0
   Module::Pluggable: 0
   NEXT: 0.60
+  POSIX: 0
   Pod::Simple::Text: 0
   Pod::Xhtml: 1.52_01
   Quantum::Superpositions: 0
@@ -95,4 +97,4 @@ requires:
   base: 0
   version: 0
 tests: t/*/*.t
-version: 0.04
+version: 0.05

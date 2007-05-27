@@ -14,14 +14,14 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 59904de2abeb33a0e1e5768f07e47197a1f3d3c3 .gitignore
-SHA1 e856159adbdf063bcae4d298dabb0cc4c4fa56f1 Build.PL
-SHA1 b69465f8ae665e5e0821e4812b8d66d6fa32c2ad Changes
-SHA1 094f02f0628588efcd2567ffa4316a5f69776407 MANIFEST
+SHA1 8c0b6e4d983521ccb506ffd193bdb23a180783f5 .gitignore
+SHA1 e7d567fa863632db5cddf87c89ef30c176f90f46 Build.PL
+SHA1 682e53625467162bcb0f113771581fd5a3d16368 Changes
+SHA1 780abf499f270a3e4bf156baf017685eaa83ccc2 MANIFEST
 SHA1 aba6b15b0202683efb157469cab9d04e0c451051 MANIFEST.SKIP
-SHA1 785e37af52780d970da9584c2d9220b6ce9cb77c META.yml
-SHA1 e856159adbdf063bcae4d298dabb0cc4c4fa56f1 Makefile.PL
-SHA1 20d48ee5d6181a46ee28c1c641012d8d8621122c README
+SHA1 24b701c07204bf841b022312a42a4407801a6734 META.yml
+SHA1 e7d567fa863632db5cddf87c89ef30c176f90f46 Makefile.PL
+SHA1 7c06beff87d874c930a85e5e3534a5026a5d1533 README
 SHA1 634c69cd4922e0bd4e62af7de25558fa6122a269 angerwhale.yml
 SHA1 5b52cbdabc56a44e4c0a90a3f5a5609a90d26f84 inc/ExtUtils/AutoInstall.pm
 SHA1 603bb9de29fb8cba7f13409c546750972eff645d inc/Module/AutoInstall.pm
@@ -38,14 +38,14 @@ SHA1 381bb98ea3877bba49ae85e7a7ea130645fd3dbf inc/Module/Install/Metadata.pm
 SHA1 b384bd42bc6263dc56d04a884ef4e5fe340049f8 inc/Module/Install/Scripts.pm
 SHA1 0c2118868ef82ac517eb6d9c3bd93e6eb9bbf83e inc/Module/Install/Win32.pm
 SHA1 e827d6d43771032fa3df35c0ad5e5698d0e54cda inc/Module/Install/WriteAll.pm
-SHA1 5fc8940f19c17c0b2dfd182ae4a66134e288d0b7 lib/Angerwhale.pm
+SHA1 3724125bfc89b67fcb86502d1c0ae91bb66f1624 lib/Angerwhale.pm
 SHA1 d1f579e94a712e2f2325cf01c2096287152a7c06 lib/Angerwhale/Challenge.pm
 SHA1 a6fd1c4382649cd6240d96576737245fb9a7dc96 lib/Angerwhale/Content/ContentProvider.pm
-SHA1 0ce335439c8d064f16e4e780475774a1617f5c2b lib/Angerwhale/Content/ContentProvider/Filesystem.pm
-SHA1 ab8971d545e423ed18b8a2d93f68ba613dd09282 lib/Angerwhale/Content/Filesystem/Item.pm
+SHA1 231e6c02c539f1c4b8c4433bd739621bb61a37b7 lib/Angerwhale/Content/ContentProvider/Filesystem.pm
+SHA1 f1b6b7d2e4db639d1a2ed90677d078bd8f3f5e72 lib/Angerwhale/Content/Filesystem/Item.pm
 SHA1 19876b37fe94ea433fc1a29bbbf7a20af4899bb3 lib/Angerwhale/Content/Filter/Author.pm
 SHA1 b1d18d7bc66ad865a22a6471257730140483a1d6 lib/Angerwhale/Content/Filter/Checksum.pm
-SHA1 00d3161b47f1e22cddcb7af7d9149887d819918c lib/Angerwhale/Content/Filter/Encoding.pm
+SHA1 795d649eb6fab9c524a5ab60d3ea61d02a3df5a1 lib/Angerwhale/Content/Filter/Encoding.pm
 SHA1 97cea821204ee0156c8174db27b2bc8c61b0de66 lib/Angerwhale/Content/Filter/Finalize.pm
 SHA1 369f139f1648c7014831ccafb8cb0e458314b657 lib/Angerwhale/Content/Filter/Format.pm
 SHA1 4b33fd6faf04bc8d8806ab4a876fd66dc85469da lib/Angerwhale/Content/Filter/PGP.pm
@@ -53,35 +53,36 @@ SHA1 1a5a5d9d795c87babe1255232d32b6883df81a27 lib/Angerwhale/Content/Filter/Summ
 SHA1 30978b4a3d5646f4783d35c1eb4ef5b772a2e254 lib/Angerwhale/Content/Filter/Title.pm
 SHA1 1c7cc747ea2653a7e97ac2a26a4d3f1ae802f33f lib/Angerwhale/Content/Filter/URI.pm
 SHA1 fd86ec950a19c43441a6cd6b0da6406f73a1b5b3 lib/Angerwhale/Content/FilterFactory.pm
-SHA1 17b15b21c54988d3441aafac7765a30ca7f586b2 lib/Angerwhale/Content/FinalizedItem.pm
+SHA1 b565507c785310dd3c89163e9904e6b833824828 lib/Angerwhale/Content/FinalizedItem.pm
 SHA1 eae32b4a6b59016c67b6a25ec25b9b6e02f38024 lib/Angerwhale/Content/Item.pm
-SHA1 4392c738b54b10b1118b9be40d88d5a88c94d40c lib/Angerwhale/Controller/Articles.pm
+SHA1 102959d90f9b864340b66858ff3c4eab87725ff5 lib/Angerwhale/Controller/Articles.pm
 SHA1 3988d954b4679aad7caa3fb1167621e1bb8dd551 lib/Angerwhale/Controller/Captcha.pm
-SHA1 16a906292ff5de4a7a4c81bf17268310d9a924f6 lib/Angerwhale/Controller/Categories.pm
-SHA1 1ee5d979cc4056392fedceaa0e6e01263988bf04 lib/Angerwhale/Controller/Comments.pm
-SHA1 d3cec746e35d9beed3127ae4ce21582ba1ec534b lib/Angerwhale/Controller/Feeds.pm
+SHA1 632b838e4476dfedb1b66248d5d184bdd30095f3 lib/Angerwhale/Controller/Categories.pm
+SHA1 a3fb51c9ef16764e573a9612b88446a9979d1d72 lib/Angerwhale/Controller/Comments.pm
+SHA1 a47e4cf237b035f0c39907d0f52b7e47ef7df05c lib/Angerwhale/Controller/Feeds.pm
 SHA1 09bf214ac36f828c6aa6b723a5eb0b741c42030d lib/Angerwhale/Controller/Login.pm
-SHA1 e04263001d3d713985e8a36d7aeb0a6ef8528668 lib/Angerwhale/Controller/Root.pm
+SHA1 b10f80b048a012340fa6a50bacc7feb7692718e6 lib/Angerwhale/Controller/Root.pm
 SHA1 0d2e1fc19292bb6c223d473d390e31d7f7ddc76c lib/Angerwhale/Controller/SidebarFeeds.pm
-SHA1 9a20f17755144b59280bdaea571803074d0e8ae5 lib/Angerwhale/Controller/Tags.pm
+SHA1 44451e68b78d74fa2e005db09a775a134ad320f8 lib/Angerwhale/Controller/Tags.pm
 SHA1 d9da534cec8acca6f40f667c31b900d92a74b4f0 lib/Angerwhale/Controller/Users.pm
 SHA1 ff9ea35ca43909d0be6c5403a0c974eff9b1f28a lib/Angerwhale/Filter/Time.pm
 SHA1 3161baf6b88b717cc5864b76f6c21559f623f229 lib/Angerwhale/Format.pm
 SHA1 9055ab2d8c2df378006843142caa3ee35d5cdea1 lib/Angerwhale/Format/HTML.pm
 SHA1 4cb4b74db042f47661117f8946bd73e9d33c9b06 lib/Angerwhale/Format/Markdown.pm
 SHA1 a1f9f14445ca15439a2d914c7d03a95f6c5cf968 lib/Angerwhale/Format/PlainText.pm
-SHA1 3aeb7eb1776d2686223df795085df07e743959ce lib/Angerwhale/Format/Pod.pm
+SHA1 c4ac742dfb5d8b62bb2e1fb8aa3bc4c948ff1b3d lib/Angerwhale/Format/Pod.pm
 SHA1 5c7a60cff85de8662d86fbb2912e84d4abc48605 lib/Angerwhale/Format/SBC.pm
 SHA1 46582278cf903baac0d0b1ff6bdc5f1843876aa9 lib/Angerwhale/Format/Textile.pm
 SHA1 9d3449544d98bad83b62a99cdbd65fce9c45e66e lib/Angerwhale/Format/Wiki.pm
 SHA1 bdbeb7f12b52629b14f4a761f769143377013bd8 lib/Angerwhale/Model/Articles.pm
 SHA1 2a39a6b000c00a1f3ab18c6e343936d4fae862a8 lib/Angerwhale/Model/Feeds.pm
-SHA1 1ed24a0e73a1db75588cd4a238a5e0274793ca8e lib/Angerwhale/Model/UserStore.pm
+SHA1 956bb345fbf9243790a9f405a34f83ebefc78a65 lib/Angerwhale/Model/UserStore.pm
 SHA1 ee69c9ef947c96272648a41b2fec40483ec1bdca lib/Angerwhale/Plugin/Cache.pm
 SHA1 dba09d1b40ae4209649c135090c0d26aef659295 lib/Angerwhale/Signature.pm
 SHA1 d857757957bdaf9125d0b64f442dd14cf6d7b396 lib/Angerwhale/Test.pm
 SHA1 f6f7b7a7e6d8b6b1fe24e82c687104fe0d83a58a lib/Angerwhale/Test/Application.pm
-SHA1 e4136caa2b3f478e756e6bc0399487a611aca2a4 lib/Angerwhale/User.pm
+SHA1 751a7454230e5fe37f4783d693152c211a28d889 lib/Angerwhale/Test/Tidy.pm
+SHA1 13e60c9a444c23e34f5b18db9209b3fdfdb0c71f lib/Angerwhale/User.pm
 SHA1 09f2686115ed47d9828c563f69b0d1d0e90c9b53 lib/Angerwhale/User/Anonymous.pm
 SHA1 202ed83363c79f284cc4404c920a00bf44fba7ad lib/Angerwhale/View/Dump.pm
 SHA1 0a2a90cb8e2b48926f6645018a1e5f741c1f1881 lib/Angerwhale/View/Feed.pm
@@ -109,11 +110,17 @@ SHA1 be918e0dd8c4ff2e65495d3b7f70d34875fcc60c root/login_box.tt
 SHA1 43db8c3ac43d02a89b7e338081306508f2ea2c4b root/message.tt
 SHA1 a9ced993027f74b4fea27593bc6bafedc6c96ada root/mini_post.tt
 SHA1 216f2523e9dff53ae586d5885eca73ad5ca53643 root/navbox.tt
-SHA1 136d5299210e16b65a220ca17a8a93a612c2467b root/page.tt
+SHA1 4b897e346ca15ada3c181a2288f86b9dd1d79139 root/page.tt
 SHA1 e43f00fa0cbce5c2ae652e29b4e544df6aa755c9 root/post.tt
 SHA1 fb988ab8d80c97f4e17bc67bcf1ac8368d345efd root/post_comment.tt
+SHA1 8b54972026c67afae60af09028ea6bef5c58b22b root/posts/.gitignore
+SHA1 911ad4b2359b402a606f582071647e98c83ff665 root/posts/.users/d0197853dd25e42f/email
+SHA1 0c23bf50afa471384576e36507098acf9ce4c460 root/posts/.users/d0197853dd25e42f/fingerprint
+SHA1 e5314885e2ee38be13e04097e786024323781f6f root/posts/.users/d0197853dd25e42f/fullname
+SHA1 712297c9d402f439c33f3f83676b4e2a867b1abf root/posts/.users/d0197853dd25e42f/key
+SHA1 78396648de34fc7ace33199111c85e8c0dbd9dfa root/posts/.users/d0197853dd25e42f/last_updated
 SHA1 fa578ad7acb8012be9206ba343c79f5b5328a045 root/posts/Welcome
-SHA1 ea440e085812fc51bf9ce707afa94b74cdec8cb6 root/resources.yml
+SHA1 5b46ca8fd71fd3ac855245fe2378cbc276f1db24 root/resources.yml
 SHA1 160f3f6419648f4645969e6d7c587ce1e0e997b9 root/search_results.tt
 SHA1 32b8a72753ef32a82cb3322dc321640af5483b8b root/sidebar.tt
 SHA1 0e1f6a357793f3595c3a86617df72f4a7c1e4022 root/static/common/images/bad_lock.png
@@ -143,15 +150,9 @@ SHA1 5275cb2a73c9c290da8d6c5bdf86ce8f0d3b5d92 root/static/common/images/svg_sour
 SHA1 d4296611ba153ec87f80b574b17a67bd869d2d5d root/static/common/images/svg_source/valid-svg12-blue-v.svg
 SHA1 a82c4325cfc4253f42aa5d1e8d799bc207e2e37f root/static/common/images/svg_source/valid-xhtml11-blue-v.svg
 SHA1 a6c713581caf4378d49f661869695b1aa07fa73b root/static/common/syntax-dark.css
+SHA1 064c94ba181074af400d3bb02b6991ba109cdd7a root/static/javascript/Angerwhale.js
 SHA1 5b439b97fb8846cd696aa345679c1f7ce828e044 root/static/javascript/Jemplate.js
-SHA1 164bc59cf75fe943edc80da65b19246fc9b9643e root/static/javascript/builder.js
-SHA1 766b4890e646aaf53b823a916a87446db0967c12 root/static/javascript/controls.js
-SHA1 8deab067320840b6c7cc1a958a1d387ac1aa5568 root/static/javascript/dragdrop.js
-SHA1 4b3cfdc5aa813a3fd3c01b5212a14eab85908df7 root/static/javascript/effects.js
-SHA1 d1480c182ac0bfc41df0ba07b92d0ab8f18a6177 root/static/javascript/prototype.js
-SHA1 44cd106c147a2fbf9cf2e17dd289ce6747d81caf root/static/javascript/scriptaculous.js
-SHA1 fafd7a63243eb7cb21a6ca08f3460187316e4003 root/static/javascript/slider.js
-SHA1 94ebdc43396b391084bf9feb47df28da94791302 root/static/javascript/unittest.js
+SHA1 ea9c1176756268653845d9b5369ecef504bdee3c root/static/javascript/MochiKit.js
 SHA1 0c75dd9eca2702fbf1d26bb4336658942fa21445 root/static/legacy/images/badge_yapcna2006.gif
 SHA1 ffd4181054102fd38f22bdb8a688ba33827d83bf root/static/legacy/images/bg.jpg
 SHA1 a38ac78ccaa9796964c71e0cfb3b183fde4459e6 root/static/legacy/images/jon.jpg
@@ -189,7 +190,7 @@ SHA1 d0c54ca51f7489ae986d01ff54b4dcae98ac3fb3 root/static/phokus/images/shr-bg.g
 SHA1 05d0a367699de60ec64ae105020214abec999d48 root/static/phokus/images/spinner.gif
 SHA1 088c9c3fdf09dc9a87698ac40d45f9c607ba19b6 root/static/phokus/phokus.css
 SHA1 7defcfa92901453757f27b6c74d8ef8494db0b57 root/tag_list.tt
-SHA1 109e0fd2334f527e807a09d405c4aa63b1fb2dd8 root/tags.tt
+SHA1 3ee0d7ea3609314e4a9722260dda77267203245a root/tags.tt
 SHA1 3db8bbee2c81be9e4dfc50cd709d43081069cb42 root/tags_as_text.tt
 SHA1 3c5957c5e4e82d0de81c8c3665d345bb7cf07c2d root/users.tt
 SHA1 98892bf76e8cfc531dd849e9702755030ae87dff script/angerwhale_cgi.pl
@@ -206,26 +207,27 @@ SHA1 cf1323cf3a5a926171d4fe052ad50ba6295b2f9b t/application/date-browsing.t
 SHA1 e6b1966f33c503c340f8245b86fe8ab84cd6625e t/application/feed_comment_nesting.t
 SHA1 8fd6217784f96036a2bc0425b97d4272a8e7e77c t/application/feeds_wrapper.t
 SHA1 37ed2fb3899952834fd0babd6fea0bdf15e95c91 t/application/follow_feed_links.t
-SHA1 99cc0e76e5f8c3b68605df51ef33fc2267ee0aa5 t/application/get_actions_work.t
+SHA1 7cb7ded10c6c4a38dd8f6e047a4ed4d710d2b232 t/application/get_actions_work.t
 SHA1 d526e4bb2fe7bbca21f4942a2f620c01fd87942b t/application/get_by_tag.t
 SHA1 16e6406d1386fd619e1dcfdfbb52680b35ab5bd1 t/application/invalid_not_found.t
 SHA1 b6aae8037c160678d76d56af6f00058dfbcd593f t/application/jemplate.t
 SHA1 04555f99d14cff499d774da940c995f8a3957bc9 t/application/login.t
-SHA1 7f2e0c7cf39af0ad142dea87483ad439db0af45c t/application/tag_cloud.t
-SHA1 0bdd58b9784ac83fd9c9c6ecc2838bca09734310 t/application/tidy_config
+SHA1 ecd5a58f542cd8c0e3cdf5f091479ef42e8d5c50 t/application/tag_cloud.t
+SHA1 67a5b63ca8f4c589780ce5426523f99935aba2e5 t/components/article-categories.t
 SHA1 ae6c0a4371ba0aab832e767550c2ef34a92f4a93 t/components/blog_user.t
 SHA1 25fbd5a6752869135285036a51207b4718d2256c t/components/category_browsing.t
 SHA1 d9937011dcb7c086cf813e1ff2021786bc7fb4b4 t/components/challenge.t
 SHA1 83d6b66e464c8f4ac94eb5edec37f50a166d74bf t/components/encoding.t
 SHA1 7c4ac48abafaeb5cf73bd45cd3213766a81a01e7 t/components/filesystem_item.t
 SHA1 654835ab2833d8dca85927939d1e643257c6c18d t/components/formatters.t
-SHA1 862137f5b6c816cef8ac44492fbf364115428cad t/components/html-format.t
-SHA1 66e1f5d71cfbd74e0b4f5bbcfa82fad751bba7c4 t/components/markdown-format.t
-SHA1 d2d55da8392452e6b5c63106a34248a33bc6e8b7 t/components/plaintext-format.t
-SHA1 142af77811fd3d610b1f453e1dad40525c570fe9 t/components/preview_comment.t
-SHA1 eda685389b84ae3ef5fded43335e7418df158132 t/components/sbc-format.t
-SHA1 e2f4ea5f127534ed453360b26252a0e3c8af0e1f t/components/signature.t
-SHA1 de751579381cf4f21255132b4149e308d3ae84f1 t/components/textile-format.t
+SHA1 86df0f861ee84d86673ec90b2578c3a316403d4a t/components/html-format.t
+SHA1 8f44db9ef15ba29189d8589ebc0e66a031312143 t/components/markdown-format.t
+SHA1 85b91e51448780de6e7f562886065e1906c5da55 t/components/plaintext-format.t
+SHA1 4781844462c25104793cde0e8a42020bbcf3b341 t/components/pod-strip-spaces.t
+SHA1 1fd7769e65a94141bbfb57c0e0a42581e74bac29 t/components/preview_comment.t
+SHA1 76c841acb0c00c1b17a106715b785e5b2052d346 t/components/sbc-format.t
+SHA1 90c3ab588e7e9793f99e33f2c6dc4d91268acb0f t/components/signature.t
+SHA1 aa52cc9d2c3ea69e7f4237e50772c1707ced7b61 t/components/textile-format.t
 SHA1 da8f986273bb86e3bf4fdb15a1d8655848f11b00 t/default/02pod.t
 SHA1 62aee974eff3bfafa9ea882681566094f27b675f t/default/03podcoverage.t
 SHA1 7ff77fbb4ccd4dba428a2b586373147af6029e50 t/models/model_Articles.t
@@ -243,9 +245,9 @@ SHA1 9b0a7511537fa32920bdd4820745ebca30543558 t/views/view_YAML.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.6 (GNU/Linux)
 
-iQCVAwUBRh2cvtAZeFPdJeQvAQIN1AP/QnRMRCaiNTfo1rW5wk55cqzb6GY14xmL
-0s2zliBvoPjCnfzOWGD4rZaXlgLPiQ6qn1NJu/pfoplOEvxBKVANiocwV5G+rh2c
-kGEwOs3URebcGgQNuGIMMnJwwXiiP1MYaNZGutUEAyrR6EyOww1ErXT7FMTzEUtY
-J6uaCkt2f5o=
-=LTee
+iQCVAwUBRlkElNAZeFPdJeQvAQJUBwP/bcNfqnzwlLEaYkGmaCNM0OWgbLWXN8E7
+V9mMdDOM3mZxPw9JV7Bf8pITrzxjLqvVf8inTXWCMu7kKSurgNZ83lbZfbZ4afHx
+Ero9IIVu6SFTrjy2E9BvBsxISxWZmtaNJXI68F6BhGXhCvKKD4M3v0e9ERMSJnW9
+CtbtAfWaAV8=
+=yohU
 -----END PGP SIGNATURE-----

@@ -1,5 +1,16 @@
 Angerwhale changes
 
+0.05  27 May 2007
+       - Eliminate prototype in favor of mochikit
+       - fix bug in POD formatter that messed up indentation between
+         paragraphs in the same block of code (zamolxes++)
+       - eliminate a warning about wide characters
+       - unicode tags work again
+       - PAR deployment improvements (rafl++)
+       - clean up 404 handling
+       - ensure all categories are displayed
+       - various bugfixes and general improvements
+
 0.04  11 Apr 2007
        - Expose JSON feeds in the UI
        - change JSON feed API (no items element; items are in an array)
