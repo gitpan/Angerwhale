@@ -1,5 +1,21 @@
 Angerwhale changes
 
+0.06  18 September 2007
+       - ** fixed the big memory leak ** (article at http://xrl.us/5gxh)
+       - Change archives location from /Year/Month/Date to
+         /archives/Year/Month/Date (category archive location,
+         i.e. /categories/Angerwhale/2007/01/01, is unchanged)
+       - cleanup lots of controller code (use Chained)
+       - fix cache memory leak
+       - fix the last unicode problem (tag args not decoded)
+       - canonicalize tags properly; tags display as lowercase only 
+       - make UserStore more tolerant of transient keyserver errors
+       - add a post confirmation message linking to the comment's feed
+       - remove extra final line from POD blocks
+       - show "logged in as" message after successful login
+       - attribute comments to logged-in users correctly
+       - internal: Use "default" *only* for 404 page
+
 0.05  27 May 2007
        - Eliminate prototype in favor of mochikit
        - fix bug in POD formatter that messed up indentation between

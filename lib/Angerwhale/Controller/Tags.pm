@@ -99,18 +99,19 @@ Renders a page showing all article tagged with all of C<@tags>.
 
 sub show_tagged_articles : Path('/tags') {
     my ( $self, $c, @tags ) = @_;
-
-    map { Encode::_utf8_on($_) unless Encode::is_utf8($_) } @tags;
+    
+    utf8::decode($_) for @tags;
+    
     $c->stash->{template} = 'search_results.tt';
     $c->stash->{title} =
       'Articles tagged with ' . join( ', ', @tags[ 0 .. $#tags - 1 ] );
 
     # make a nice-looking comma-separated list ("foo, bar, and baz"
     # or "foo and bar")
-    if ( $#tags == 0 ) {
+    if ( @tags == 1 ) {
         $c->stash->{title} .= $tags[-1];
     }    # nop
-    elsif ( $#tags == 1 ) {
+    elsif ( @tags == 2 ) {
         $c->stash->{title} .= ' and ' . $tags[-1];
     }
     else {
@@ -120,7 +121,7 @@ sub show_tagged_articles : Path('/tags') {
     $c->stash->{tags}      = any(@tags);      # for the navbar
     $c->stash->{tag_count} = scalar @tags;    # easier to deal with in TT
     $c->stash->{articles} =
-      [ reverse sort $c->stash->{root}->get_by_tag(@tags) ];
+      [ reverse sort $c->model('Articles')->get_by_tag(@tags) ];
     $c->stash->{article_count} = scalar @{ $c->stash->{articles} };
 
 }
@@ -184,14 +185,14 @@ sub get_nav_box : Local {
     $c->stash->{template}   = 'navbox.tt';
 }
 
-=head2 index
+=head2 all_tags
 
 Show all tags.  Currently dispatches to C<tag_list> to render
 a Web 2.0 compliant Tag Cloud.  Yay.
 
 =cut
 
-sub index : Private {
+sub all_tags : Path Args(0) {
     my ( $self, $c ) = @_;
     $c->detach('tag_list');
 }

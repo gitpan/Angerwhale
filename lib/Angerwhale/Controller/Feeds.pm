@@ -21,13 +21,13 @@ Catalyst Controller.
 
 =cut
 
-=head2 index
+=head2 feeds
 
 The main index of all available feeds
 
 =cut
 
-sub index : Private {
+sub feeds : Path {
     my ( $self, $c ) = @_;
     $c->stash->{template} = 'feeds.tt';
 
@@ -91,13 +91,7 @@ sub comments : Local {
 
     # todo contains articles first, but comments are added inside the loop
 
-    my @candidates;    # store comments to show here, then sort at the end
-    while ( my $item = shift @todo ) {
-        push @candidates, $item
-          if $item->isa('Angerwhale::ContentItem::Comment');
-        unshift @todo, ( $item->comments );    # depth first (sort of)
-    }
-    @candidates = reverse sort @candidates;
+    my @candidates = _flatten_children(@todo);
 
     $c->stash->{feed_title} = $c->config->{title} . " Comment Feed"
       if $c->config->{title};
@@ -122,8 +116,19 @@ sub comment : Local {
     $c->detach('/not_found') if !$comment;
     
     $c->stash->{type}       = $type;
-    $c->stash->{items}      = $comment;
+    $c->stash->{items}      = [_flatten_children($comment)];
     $c->stash->{feed_title} = 'Replies to ' . $comment->title;
+}
+
+sub _flatten_children {
+    my @todo = @_;
+    my @candidates;    # store comments to show here, then sort at the end
+    while ( my $item = shift @todo ) {
+        push @candidates, $item
+          if $item->isa('Angerwhale::Content::Comment');
+        unshift @todo, ( $item->comments );    # depth first (sort of)
+    }
+    @candidates = reverse sort @candidates;
 }
 
 =head2 category
@@ -172,8 +177,8 @@ the URI.
 
 sub tags : Local {
     my ( $self, $c, $tag, $type ) = @_;
-    $c->forward( '/tags/show_tagged_articles', $tag );
-
+    $c->forward( '/tags/show_tagged_articles', [split /\s+/,$tag] );
+    
     if ( $c->config->{title} ) {
         $c->stash->{feed_title} = $c->config->{title};
         $c->stash->{feed_title} .= " - Articles tagged with $tag"

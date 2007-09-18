@@ -160,9 +160,9 @@ sub get_user_by_nice_id {
         _user_ok($user);
     };
 
-    confess "Could not refresh or retrieve user 0x$nice_id!" if $@;
-    confess "user isnta a user" if !$user->isa('Angerwhale::User');
-
+    warn "could not refresh or retrieve user 0x$nice_id: $@" if $@;
+    die "user isnta a user" if !$user->isa('Angerwhale::User');
+    
     return $user;
 }
 
@@ -208,7 +208,7 @@ sub store_user {
 
     my $base = "$dir/$uid";
     mkdir $base                                      if !-d $base;
-    confess "couldn't create userdir $base for $uid" if !-d $base;
+    die "couldn't create userdir $base for $uid" if !-d $base;
     eval {
         write_file( "$base/key",          $user->public_key );
         write_file( "$base/fullname",     $user->fullname );
@@ -217,7 +217,7 @@ sub store_user {
         write_file( "$base/last_updated", time() );
     };
     if ($@) {
-        confess "Error writing user: $!";
+        die "Error writing user: $!";
     }
 
     return 1;

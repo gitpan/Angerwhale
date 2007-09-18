@@ -2,6 +2,8 @@
 angerwhale.yml
 Build.PL
 Changes
+contrib/load_feed.js
+contrib/static_blog.html
 inc/ExtUtils/AutoInstall.pm
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
@@ -39,6 +41,7 @@ lib/Angerwhale/Controller/Captcha.pm
 lib/Angerwhale/Controller/Categories.pm
 lib/Angerwhale/Controller/Comments.pm
 lib/Angerwhale/Controller/Feeds.pm
+lib/Angerwhale/Controller/Jemplate.pm
 lib/Angerwhale/Controller/Login.pm
 lib/Angerwhale/Controller/Root.pm
 lib/Angerwhale/Controller/SidebarFeeds.pm
@@ -98,11 +101,6 @@ root/page.tt
 root/post.tt
 root/post_comment.tt
 root/posts/.gitignore
-root/posts/.users/d0197853dd25e42f/email
-root/posts/.users/d0197853dd25e42f/fingerprint
-root/posts/.users/d0197853dd25e42f/fullname
-root/posts/.users/d0197853dd25e42f/key
-root/posts/.users/d0197853dd25e42f/last_updated
 root/posts/Welcome
 root/resources.yml
 root/search_results.tt
@@ -201,6 +199,8 @@ t/components/article-categories.t
 t/components/blog_user.t
 t/components/category_browsing.t
 t/components/challenge.t
+t/components/cleanup-tagcount.t
+t/components/defer-item.t
 t/components/encoding.t
 t/components/filesystem_item.t
 t/components/formatters.t

@@ -114,16 +114,17 @@ sub process : Local {
     $c->session->{user} = $user;
     $c->log->debug(
         "successful login for " . $user->fullname . "($nice_key_id)" );
+    $c->flash( message => "You are now logged in as ". $user->fullname );
     $c->response->redirect( $c->uri_for('/') );
 }
 
-=head2 index
+=head2 login
 
 Render the login page
 
 =cut
 
-sub index : Private {
+sub login :Path {
     my ( $self, $c ) = @_;
     $c->stash->{template} = 'login.tt';
     $c->forward('nonce');

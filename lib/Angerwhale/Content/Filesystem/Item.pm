@@ -12,7 +12,6 @@ use File::Spec;
 use File::Find;
 use Data::UUID;
 use File::CreationTime qw(creation_time);
-use Scalar::Defer;
 use Class::C3;
 use Encode;
 use base 'Angerwhale::Content::Item';
@@ -81,10 +80,10 @@ sub new {
     croak "need full path to file" if !-e $self->file;
 
     # fix up paths a bit
-    $self->{root} =~ s{/+$}{};
-    $self->{file} =~ s{/+$}{};
     $self->{root} =~ s{/+}{/}g;
     $self->{file} =~ s{/+}{/}g;
+    $self->{root} =~ s{/+$}{};
+    $self->{file} =~ s{/+$}{};
     
     my $file = $self->file;
     $self->data(scalar read_file( $file )); 
@@ -96,20 +95,22 @@ sub new {
     $encoding = $attributes{encoding} || $encoding || 'utf-8';
     $attributes{encoding} = $encoding;
 
-    my %_attributes;
-    # decode metadata now
-    while (my ($key, $value) = each %attributes) {
-        $key   = Encode::decode($encoding, $key, 1);
-        $value = Encode::decode($encoding, $value, 1);
-        $_attributes{$key} = $value;
+    { # decode metadata now
+        my %_attributes;
+        while (my ($key, $value) = each %attributes) {
+            $key   = Encode::decode($encoding, $key, 1);
+            $value = Encode::decode($encoding, $value, 1);
+            $_attributes{$key} = $value;
+        }
+        %attributes = %_attributes;
     }
-    %attributes = %_attributes;
     
     my (undef, undef, $basename) = File::Spec->splitpath($self->file);
     $self->metadata ( { %attributes,
                         creation_time     => creation_time($file),
                         modification_time => (stat $file)[9],
-                        name              => $basename,
+                        name              => Encode::decode($encoding, 
+                                                            $basename, 1),
                       } );
     
     # this needs the above metadata in order to work
@@ -132,7 +133,7 @@ sub new {
     foreach my $t (grep {/tags[.]/} keys %{$self->{metadata}}) {
         my $count = delete $self->{metadata}{$t}; # cleanup
         $t =~ /tags[.](.+)/;
-        $self->{metadata}{tags}{$1} = $count;
+        $self->_add_tag($1, $count);
     }
     
     return $self;
@@ -159,31 +160,6 @@ sub store_data {
     return;
 }
 
-=head2 _children
-
-[private] Get the children of this item.  See SUPER::children for public access.
-
-=head2 children
-
-Return (or set; INTERNAL USE ONLY) reference to the list of children.
-
-=cut
-
-sub children {
-    my $self = shift;
-    my $kids = shift;
-    
-    if (defined $kids) {
-        return $self->{children} = $kids;
-    }
-    
-    if (!$self->{children}) {
-        $self->{children} = [$self->_children];
-    }
-    
-    return $self->{children};
-}
-
 sub _get_commentdir {
     my $self = shift;
     
@@ -204,6 +180,12 @@ sub _get_commentdir {
     mkpath($commentdir);
     return $commentdir;
 }
+
+=head2 _children
+
+[private] Get the children of this item.  See SUPER::children for public access.
+
+=cut
 
 sub _children {
     my $self = shift;
@@ -323,32 +305,33 @@ sub add_comment {
     # /foo/bar/comment1337abc! -> /foo/bar/._tmp_.comment1337abc!
     # maybe make a random filename instead?
 
-    open my $comment, '>:raw', $tmpname
+    open my $comment_fh, '>:raw', $tmpname
       or die "unable to open $filename: $!";
     eval {
         my $copy = "$body";
         utf8::encode($copy) if utf8::is_utf8($body);
-        print {$comment} "$copy\n" or die "io error: $!";
-        close $comment;
+        print {$comment_fh} "$copy\n" or die "io error: $!";
+        close $comment_fh;
         rename( $tmpname => $filename )
           or die "Couldn't rename $tmpname to $filename: $!";
     };
     if ($@) {
-        close $comment;
+        close $comment_fh;
         unlink $tmpname;
         unlink $filename;    # partial rename !?
         die $@;              # propagate the message up
     }
 
     # set attributes: (TODO: atomic also)
+    my $comment;
     eval {
-        my $comment = Angerwhale::Content::Filesystem::Item->
-          new({ root    => $self->root,
-                base    => $comment_dir,
-                file    => $filename,
-                comment => 1,
-                parent  => $self->metadata->{path},
-              });
+        $comment = Angerwhale::Content::Filesystem::Item->
+            new({ root    => $self->root,
+                  base    => $comment_dir,
+                  file    => $filename,
+                  comment => 1,
+                  parent  => $self->metadata->{path},
+                });
         
         # attribute the comment to someone, if possible
         if ($user) {

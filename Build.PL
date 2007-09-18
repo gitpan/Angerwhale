@@ -24,33 +24,23 @@ requires
    'Catalyst::Plugin::Session'                   => 0,
    'Catalyst::Plugin::Session::State::Cookie'    => 0,
    'Catalyst::Plugin::Session::Store::FastMmap'  => 0,
-   'Catalyst::Plugin::Setenv'                    => 0,
    'Catalyst::Plugin::Static::Simple'            => 0,
-   'Catalyst::Plugin::Unicode'                   => '0.2',
+   'Catalyst::Plugin::Unicode'                   => '0.7',
    'Catalyst::View::TT'                          => 0,
    'Catalyst::View::JSON'                        => 0,
    'Catalyst::View::Jemplate'                    => 0,
    'Class::C3'                                   => 0,
-   'Compress::Zlib'                              => 0,
-   'Crypt::Blowfish'                             => 0,
-   'Crypt::CAST5_PP'                             => 0,
-   'Crypt::DES_EDE3'                             => 0,
-   'Crypt::IDEA'                                 => 0, 
+   'Compress::Zlib'                              => '2.005',
    'Crypt::OpenPGP'                              => '1.03',
-   'Crypt::RIPEMD160'                            => 0,
-   'Crypt::Random'                               => '1.25',
-   'Crypt::Rijndael'                             => 0,
-   'Crypt::Twofish'                              => '2.00',
-   'Data::GUID'                                  => '0.04',
+   'Crypt::Random'                               => 0,
+   'Data::UUID'                                  => 0,
    'Digest::MD5'                                 => 0,
-   'Digest::SHA1'                                => 0,
    'File::Attributes'                            => 0,
    'File::Attributes::Recursive'                 => 0,
    'File::CreationTime'                          => '2.03',
    'File::Find'                                  => 0,
    'File::Remove'                                => 0,
    'File::Slurp'                                 => '9999.12',
-   'File::Temp'                                  => 0,
    'File::Path'                                  => 0,
    'File::Spec'                                  => 0,
    'GD::SecurityImage'                           => 0,
@@ -63,13 +53,13 @@ requires
    'NEXT'                                        => '0.60',
    'Pod::Simple::Text'                           => 0,
    'POSIX'                                       => 0,
-   'Pod::Xhtml'                                  => '1.52_01',
+   'Pod::Xhtml'                                  => '1.57',
    'Quantum::Superpositions'                     => 0,
-   'Scalar::Defer'                               => 0,
    'Scalar::Util'                                => 0,
    'Syntax::Highlight::Engine::Kate'             => '0.02',
    'TeX::Hyphen'                                 => 0,
    'Template::Plugin::Filter'                    => 0,
+   'Template::Plugin::JavaScript'                => 0,
    'Template::Plugin::Lingua::EN::Inflect'       => 0,
    'Text::Autoformat'                            => 0,
    'Text::Markdown'                              => 0,
@@ -99,8 +89,9 @@ build_requires
    'Test::XML::Valid'                            => 0,
    'Test::YAML::Valid'                           => '0.02',
    'Test::JSON'                                  => 0,
-   'Test::WWW::Mechanize::Catalyst'              => 0,
+   'Test::WWW::Mechanize::Catalyst'              => '0.41',
    'Path::Class',                                => 0,
+   'Test::LongString'                            => 0,
   );
 
 feature('Speed up crypto', ['Math::BigInt::GMP' => 0]);
@@ -154,3 +145,9 @@ TAGS: $(MAN3PODS) $(TEST_FILES)
 POSTAMBLE
 
 }
+
+=for the maintainer
+
+(for i in `cat META.yml | perl -MYAML -e 'print "$_\n"for(keys %{Load(join"",<>)->{requires}})'`; do echo $i; fgrep $i lib -R | wc -l; done) | egrep -B1 '^0$' | grep ::|less
+
+=cut

@@ -5,9 +5,6 @@ use warnings;
 use base 'Catalyst::Controller';
 use Angerwhale::Format;
 use Scalar::Util qw(blessed);
-#use SpamMonkey;
-
-#__PACKAGE__->mk_ro_accessors(qw/monkey/);
 
 =head1 NAME
 
@@ -22,25 +19,6 @@ See L<Angerwhale>
 Catalyst Controller.
 
 =head1 METHODS
-
-=head2 COMPONENT
-
-Setup spam filtering
-
-=cut
-
-#sub COMPONENT {
-#    my $class = shift;
-#    my $app   = shift;
-#    my $args  = shift;
-#    
-#    # setup spammonkey
-#    my $rules = $app->path_to($app->config->{base}, '.spamrules!!!');
-#    my $monkey = SpamMonkey->new(rule_dir => "/usr/share/spamassassin");
-#    $monkey->ready;
-#    $args->{monkey} = $monkey;
-#    $class->NEXT::COMPONENT($app, $args, @_);
-#}
 
 =head2 find_by_uri_path(@path)
 
@@ -152,45 +130,30 @@ sub post : Local {
     my $article = $c->stash->{article};
     my $comment = $c->stash->{comment};
     
-    my $object  = $comment;
-    $object = $article if !defined $comment;
+    my $item  = $comment;
+    $item = $article if !defined $comment;
 
     # object is the object we're replying to
 
-    $c->stash->{post_title} = "Re: " . $object->title;
+    $c->stash->{post_title} = "Re: " . $item->title;
 
     my $title;
     if ( $method eq 'POST' ) {
         $title = $c->request->param('title');
-        my $body = $c->request->param('body') || ' ';
-        my $type = $c->request->param('type');
+        my $body    = $c->request->param('body') || ' ';
+        my $type    = $c->request->param('type');
         my $captcha = $c->request->param('captcha');
+
         my $user = $c->stash->{user};
         my $uid  = $user->nice_id if ( $user && $user->can('nice_id') );
-
-
-        my $comment = $c->model('Articles')->
-          preview(
-                  {
-                   title   => $title,
-                   body    => $body,
-                   type    => $type
-                  }
-                 );
-        
+        my $comment = $c->model('Articles')->preview({ title  => $title,
+                                                       body   => $body,
+                                                       type   => $type,
+                                                       author => $uid,
+                                                     });
         my $errors = 0;
-        # spam filter
-       # my $text = $comment->plain_text();
-       # my $spam_result = $self->monkey->test($body);
-       # warn "hits: ". $spam_result->hits;
-       # warn "details". $spam_result->describe_hits;
-        
-       # if($spam_result->is_spam()){
-       #     $c->stash->{error} = 'This comment looks like SPAM!  Posting aborted.';
-       #     $errors++;
-       # }
-
-        if($c->stash->{captcha} && !$c->config->{ignore_captcha}){ # captcha required
+        if($c->stash->{captcha} && !$c->config->{ignore_captcha}){ 
+            # captcha required
             my $ok = $c->forward('/captcha/check_captcha', [$captcha]);
             if(!$ok){
                 $c->stash->{error} = 'Please enter the text in the security image.';
@@ -213,7 +176,9 @@ sub post : Local {
             $c->stash->{body}            = $body;
         }
         else {
-            $object->add_comment( $title, $body, $uid, $type );
+            my $comment = $item->add_comment( $title, $body, $uid, $type );
+            $c->flash->{tracking_url} = 
+              $c->req->base. "feeds/comment/xml/". $comment->metadata->{path};
             $c->response->redirect($c->uri_for('/'.$c->stash->{article}->uri));
         }
     }
