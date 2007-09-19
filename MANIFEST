@@ -4,7 +4,6 @@ Build.PL
 Changes
 contrib/load_feed.js
 contrib/static_blog.html
-inc/ExtUtils/AutoInstall.pm
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
@@ -101,6 +100,7 @@ root/page.tt
 root/post.tt
 root/post_comment.tt
 root/posts/.gitignore
+root/posts/.Welcome.attributes
 root/posts/Welcome
 root/resources.yml
 root/search_results.tt
@@ -226,4 +226,3 @@ t/views/view_HTML.t
 t/views/view_Jemplate.t
 t/views/view_JSON.t
 t/views/view_YAML.t
-SIGNATURE                                Public-key signature (added by MakeMaker)
