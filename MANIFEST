@@ -4,6 +4,7 @@ Build.PL
 Changes
 contrib/load_feed.js
 contrib/static_blog.html
+inc/ExtUtils/AutoInstall.pm
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
@@ -18,10 +19,9 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Scripts.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
+INSTALL
 lib/Angerwhale.pm
 lib/Angerwhale/Challenge.pm
-lib/Angerwhale/Content/ContentProvider.pm
-lib/Angerwhale/Content/ContentProvider/Filesystem.pm
 lib/Angerwhale/Content/Filesystem/Item.pm
 lib/Angerwhale/Content/Filter/Author.pm
 lib/Angerwhale/Content/Filter/Checksum.pm
@@ -35,6 +35,8 @@ lib/Angerwhale/Content/Filter/URI.pm
 lib/Angerwhale/Content/FilterFactory.pm
 lib/Angerwhale/Content/FinalizedItem.pm
 lib/Angerwhale/Content/Item.pm
+lib/Angerwhale/Content/Provider.pm
+lib/Angerwhale/Content/Provider/Filesystem.pm
 lib/Angerwhale/Controller/Articles.pm
 lib/Angerwhale/Controller/Captcha.pm
 lib/Angerwhale/Controller/Categories.pm
@@ -100,7 +102,6 @@ root/page.tt
 root/post.tt
 root/post_comment.tt
 root/posts/.gitignore
-root/posts/.Welcome.attributes
 root/posts/Welcome
 root/resources.yml
 root/search_results.tt

@@ -1,6 +1,7 @@
 --- 
 abstract: exciting new weblogging software or something
-author: Jonathan Rockway <jrockway@cpan.org>
+author: 
+  - Jonathan Rockway <jrockway@cpan.org>
 build_requires: 
   Directory::Scratch: 0.12
   HTML::Tidy: 1.08
@@ -17,7 +18,7 @@ build_requires:
   Test::YAML::Valid: 0.02
   ok: 0
 distribution_type: module
-generated_by: Module::Install version 0.67
+generated_by: Module::Install version 0.68
 license: GPL
 meta-spec: 
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -92,4 +93,4 @@ requires:
   base: 0
   version: 0
 tests: t/*/*.t
-version: 0.061
+version: 0.062
